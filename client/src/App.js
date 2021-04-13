@@ -21,7 +21,19 @@ class App extends React.Component {
   }
 
   isWinner = () => {
-
+    let s = (this.state.count % 2 === 0) ? 'X' : 'O';
+    for (let i = 0; i < 8; i++) {
+      let line = this.winnerLine[i];
+      if (this.state.squares[line[0]] === s
+        && this.state.squares[line[1]] === s
+        && this.state.squares[line[2]] === s) {
+          alert(s + " win");
+          setTimeout(()=>{
+            this.setState({squares : Array(9).fill(null)});
+            this.setState({count : 0});
+          }, 3000)
+        }
+    }
   }
  
   clickHandler = event => {
